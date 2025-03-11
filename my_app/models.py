@@ -14,6 +14,9 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def poster_image(self):
+        return self.images.filter(is_poster=True).first()
 
 class ProjectImage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="images")
@@ -23,4 +26,6 @@ class ProjectImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.project.name} {'(Poster)' if self.is_poster else ''}"
+    
+    
 
