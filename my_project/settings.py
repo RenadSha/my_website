@@ -121,7 +121,7 @@ USE_TZ = True
 import os
 STATIC_URL = 'static/'
 MEDIA_URL  = '/images/'
-STATICFILES_DIR = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
