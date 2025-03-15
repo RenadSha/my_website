@@ -1,0 +1,68 @@
+{% extends "main.html" %}
+{% load static %}
+{% block title %}{{ project.name }}{% endblock %}
+{% block content %}
+
+<!-- Project Detail Section -->
+<section class="py-5 bg-dark text-light">
+    <div class="container">
+        <h2 class="text-info">{{ project.name }}</h2>
+        <p class="lead">{{ project.description }}</p>
+
+        <!-- Project Type  -->
+        <div class="mb-3">
+            <h5 class="text-light">Project Type:</h5>
+            <span class="badge bg-primary">{{ project.get_type_display }}</span>
+        </div>
+
+        <!-- Tags  -->
+        {% if project.tags.all %}
+        <div class="mb-3">
+            <h5 class="text-light">Tags:</h5>
+            {% for tag in project.tags.all %}
+                <span class="badge bg-info me-1">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Project Link  -->
+        {% if project.link %}
+        <div class="mb-3">
+            <h5 class="text-light">Project Link:</h5>
+            <a href="{{ project.link }}" target="_blank" class="btn btn-warning">
+                Visit Project <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+        {% endif %}
+
+        <!-- Images -->
+        {% if project.images.all %}
+        <div class="mb-4">
+            <h5 class="text-light">Project Images:</h5>
+        </div>
+
+        
+        <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in project.images.all %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ project.name }}">
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {% endif %}
+
+        <a href="/" class="btn btn-info mt-4">Back to Projects</a>
+    </div>
+</section>
+
+{% endblock %}
