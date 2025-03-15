@@ -11,7 +11,7 @@
             <div class ="py-5"> 
                 <h1 class="display-5">I am  a  <span class="text-info">Software developer</span></h1>
                 <p class="py-1 lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit, porro. A consequatur officia distinctio ea dolor excepturi facere sunt incidunt nisi ipsa. Sed aperiam natus magni fugit! Ipsum omnis at nostrum expedita animi. Provident suscipit aliquid ducimus cupiditate, quos voluptates?</p>
-                <button class="btn btn-info">Get started</button>
+
                 
             </div>
             <img class=" d-sm-block img-fluid  w-50" src="{% static 'images/programmer.svg'%}" alt="">
@@ -100,7 +100,22 @@
                     <img src="{{ poster_image.image.url }}" class="card-img-top" alt="{{ project.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ project.name }}</h5>
-                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+
+                        <!-- Project Type -->
+                        <p class="card-text">
+                            <span class="badge bg-primary">{{ project.get_type_display }}</span>
+                        </p>
+
+                        <!-- Used Technology (Tags) -->
+                        {% if project.tags.all %}
+                        <p class="card-text">
+                            <strong>Tags:</strong> 
+                            {% for tag in project.tags.all %}
+                                <span>{{ tag.name }},</span>
+                            {% endfor %}
+                        </p>
+                        {% endif %}
+
                         <a href="#" class="btn btn-info">Show details</a>
                     </div>
                 </div>
@@ -111,6 +126,7 @@
         </div>
     </div>
 </section>
+
 
 
 <!-- Contact -->
