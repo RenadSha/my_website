@@ -14,7 +14,7 @@
 
                 
             </div>
-            <img class=" d-sm-block img-fluid  w-50" src="{% static 'images/programmer.svg'%}" alt="">
+            <img class=" d-sm-block img-fluid  w-50" src="{% static 'media/programmer.svg'%}" alt="">
         </div>
     </div>
 </section>
@@ -81,12 +81,12 @@
 
 <!-- Projects-->
 
-<section id="learn" class="py-5 bg-dark text-light">
+<section id="projects" class="py-5 bg-dark text-light">
     <div class="container">
         <h2 class="text-center mb-4">Projects</h2>
         <div class="row align-items-center justify-content-center">
             <div class="col-md-4 text-center">
-                <img src="{% static 'images/projects.svg' %}" alt="Projects" class="img-fluid mb-4">
+                <img src="{% static 'media/projects.svg' %}" alt="Projects" class="img-fluid mb-4">
             </div>
         </div>
 
@@ -116,7 +116,7 @@
                         </p>
                         {% endif %}
 
-                        <a href="#" class="btn btn-info">Show details</a>
+                        <a href="{% url 'project_details' project.id %}" class="btn btn-info">Show details</a>
                     </div>
                 </div>
             </div>
