@@ -11,21 +11,29 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = Env()
+Env.read_env()
+ENVIRONMENT = env("ENVIRONMENT", default="production")
+ENVIRONMENT = "production"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-16)^m*fez1o-hh0$#*vbug6fd*m6eqsru57j+rn*#kx1m+q2e_'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if ENVIRONMENT == "development":
+	DEBUG = True
+else:
+	DEBUG = False
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'my_project.urls'
@@ -120,13 +129,13 @@ USE_TZ = True
 
 import os
 STATIC_URL = 'static/'
-MEDIA_URL  = '/images/'
+MEDIA_URL  = 'media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 # Default primary key field type
