@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = Env()
 Env.read_env()
 ENVIRONMENT = env("ENVIRONMENT", default="production")
-ENVIRONMENT = "production"
+# ENVIRONMENT = "production"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
