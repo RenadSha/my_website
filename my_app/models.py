@@ -1,5 +1,6 @@
 from django.db import models
 import re
+from django_ckeditor_5.fields import CKEditor5Field
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
@@ -15,7 +16,7 @@ class Project(models.Model):
     ]
 
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = CKEditor5Field('description',config_name='default')
     tags = models.ManyToManyField('Tag', related_name="projects")
     type = models.CharField(max_length=20, choices=PROJECT_TYPES, default='personal')  # Type van het project
     link = models.URLField(blank=True, null=True)  # Optionele link naar het project
