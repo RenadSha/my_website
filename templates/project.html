@@ -7,7 +7,7 @@
 <section class="py-5 bg-dark text-light">
     <div class="container">
         <h2 class="text-info">{{ project.name }}</h2>
-        <p class="lead">{{ project.description }}</p>
+        <p class="lead">{{ project.description|safe }}</p>
 
         <!-- Project Type  -->
         <div class="mb-3">
